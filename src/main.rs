@@ -1,7 +1,13 @@
-use image::{open, GenericImageView, Rgba};
+use image::{open, GenericImageView, Rgba,ImageError};
 use imageproc::drawing::draw_text_mut;
 use imageproc;
 use ab_glyph::{FontVec, PxScale};
+use anyhow::{ Result,Error};
+fn getImage() -> Result<(image::DynamicImage)> {
+    let  image = open("test_data/pikachu.jpg")?;
+    Ok(image)
+}
+
 fn main() {
     let mut image = open("test_data/pikachu.jpg").unwrap();
     let (dimension_x, dimension_y) = image.dimensions();
